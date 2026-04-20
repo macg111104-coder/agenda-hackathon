@@ -29,7 +29,7 @@ public class ContactoService {
     }
 
     //Modificar un telefono por nombre y apellido
-    public void modificarContacto(String nombre, String apellido, String nuevo){
+    public void modificarTelefono(String nombre, String apellido, String nuevo){
         for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) && 
                 c.getApellido().equalsIgnoreCase(apellido)) {

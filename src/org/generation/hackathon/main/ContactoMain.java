@@ -35,7 +35,7 @@ public class ContactoMain {
                     String apellidoModificar = sc.nextLine();
                     System.out.print("Ingrese el nuevo número de teléfono: ");
                     String nuevoTelefono = sc.nextLine();
-                    service.modificarContacto(nombreModificar, apellidoModificar, nuevoTelefono);
+                    service.modificarTelefono(nombreModificar, apellidoModificar, nuevoTelefono);
                     break;
                 case 0:
                     System.out.println("Saliendo...");
