@@ -7,7 +7,7 @@ public class ContactoService {
     public boolean agendaLlena(){
         Contacto contactos = new Contacto();
 
-        return contactos.tamaño() > 10;
+        return
     }
 
     public String espaciosLibres(){
