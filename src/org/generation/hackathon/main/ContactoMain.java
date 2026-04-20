@@ -11,7 +11,7 @@ public class ContactoMain {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n1.Añadir 2.Buscar 3.Eliminar 4.Listar 5.Modificar 6.Estado 7.Salir");
+            System.out.println("\n1.Añadir 2.Buscar 3.Eliminar 4.Listar 5.Modificar 6.Estado 7.Espacios libres 8.Salir");
             System.out.print("Opción: ");
             String opc = sn.nextLine();
 
@@ -20,7 +20,7 @@ public class ContactoMain {
                     System.out.print("Nombre: "); String n1 = sn.nextLine();
                     System.out.print("Apellido: "); String a1 = sn.nextLine();
                     System.out.print("Teléfono: "); String t1 = sn.nextLine();
-                    servicio.añadirContacto(new Contacto(n1, a1), t1);
+                    servicio.añadirContacto(new Contacto(n1, a1, t1));
                     break;
 
                 case "2":
@@ -51,6 +51,10 @@ public class ContactoMain {
                     break;
 
                 case "7":
+                    servicio.espaciosLibres();
+                    break;
+
+                case "8":
                     salir = true;
                     break;
 
