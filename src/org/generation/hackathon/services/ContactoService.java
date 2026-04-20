@@ -10,7 +10,7 @@ public class ContactoService {
     private Map<Integer, Contacto> agenda = new HashMap<>();
     private Scanner sc = new Scanner(System.in);
 
-    public void añadirContacto(){
+    public void añadirContacto(Contacto contacto){
         if (agendaLlena()){
             System.out.println("La lista esta llena ya no puede ingresar mas datos");
             System.exit(1);
@@ -27,7 +27,7 @@ public class ContactoService {
         }
 
         System.out.print("Teléfono: ");
-        long tel = Long.parseLong(sc.nextLine());
+        String tel = sc.nextLine();
 
         Contacto nuevo = new Contacto(nombre, apellido, tel);
 
@@ -42,5 +42,18 @@ public class ContactoService {
             }
         }
         return false;
+    }
+
+    public boolean agendaLlena(){
+        return agenda.size() > 10;
+    }
+
+    public String espaciosLibres(){
+
+        if(agenda.size() <= 10){
+            return "Espacios disponibles: "+ (10 - agenda.size())+" espacios";
+        }else {
+            return "Ya no hay espacio caaarrrrrrrrrrrrrrrnal :v";
+        }
     }
 }
