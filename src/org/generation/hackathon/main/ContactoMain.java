@@ -24,26 +24,26 @@ public class ContactoMain {
                     break;
 
                 case "2":
-                    System.out.print("Nombre a buscar: "); String n2 = sn.nextLine();
-                    System.out.print("Apellido a buscar: "); String a2 = sn.nextLine();
-                    servicio.buscarContacto(n2, a2);
+//                    System.out.print("Nombre a buscar: "); String n2 = sn.nextLine();
+//                    System.out.print("Apellido a buscar: "); String a2 = sn.nextLine();
+                    //servicio.buscarContacto(n2, a2);
                     break;
 
                 case "3":
-                    System.out.print("Nombre a eliminar: "); String n3 = sn.nextLine();
-                    System.out.print("Apellido a eliminar: "); String a3 = sn.nextLine();
-                    servicio.eliminarContacto(new Contacto(n3, a3));
+//                    System.out.print("Nombre a eliminar: "); String n3 = sn.nextLine();
+//                    System.out.print("Apellido a eliminar: "); String a3 = sn.nextLine();
+//                    //servicio.eliminarContacto(new Contacto(n3, a3));
                     break;
 
                 case "4":
-                    servicio.listarContactos();
+                    //servicio.listarContactos();
                     break;
 
                 case "5":
-                    System.out.print("Nombre del contacto: "); String n5 = sn.nextLine();
-                    System.out.print("Apellido del contacto: "); String a5 = sn.nextLine();
-                    System.out.print("Nuevo Teléfono: "); String nt = sn.nextLine();
-                    servicio.modificarTelefono(n5, a5, nt);
+//                    System.out.print("Nombre del contacto: "); String n5 = sn.nextLine();
+//                    System.out.print("Apellido del contacto: "); String a5 = sn.nextLine();
+//                    System.out.print("Nuevo Teléfono: "); String nt = sn.nextLine();
+//                    //servicio.modificarTelefono(n5, a5, nt);
                     break;
 
                 case "6":
