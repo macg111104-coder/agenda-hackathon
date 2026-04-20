@@ -1,5 +1,7 @@
 package org.generation.hackathon.models;
 
+import java.util.Objects;
+
 public class Contacto {
     private int id;
     private String nombre;
@@ -15,14 +17,6 @@ public class Contacto {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -55,6 +49,20 @@ public class Contacto {
 
     public static void setIdContacto(int idContacto) {
         Contacto.idContacto = idContacto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contacto)) return false;
+        Contacto c = (Contacto) o;
+        return nombre.equalsIgnoreCase(c.nombre) &&
+               apellido.equalsIgnoreCase(c.apellido);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre.toLowerCase(), apellido.toLowerCase());
     }
 
     @Override
