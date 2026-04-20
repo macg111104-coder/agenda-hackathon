@@ -26,7 +26,7 @@ public class ContactoMain {
                     String nombre = sc.nextLine();
                     System.out.print("Ingrese el apellido del contacto a eliminar: ");
                     String apellido = sc.nextLine();
-                    service.eliminarContacto(new Contacto(nombre, apellido, 0));
+                    service.eliminarContacto(new Contacto(nombre, apellido, ""));
                     break;
                 case 2:
                     System.out.print("Ingrese el nombre del contacto a modificar: ");
@@ -34,8 +34,7 @@ public class ContactoMain {
                     System.out.print("Ingrese el apellido del contacto a modificar: ");
                     String apellidoModificar = sc.nextLine();
                     System.out.print("Ingrese el nuevo número de teléfono: ");
-                    int nuevoTelefono = sc.nextInt();
-                    sc.nextLine(); // Consumir el salto de línea
+                    String nuevoTelefono = sc.nextLine();
                     service.modificarContacto(nombreModificar, apellidoModificar, nuevoTelefono);
                     break;
                 case 0:

@@ -6,13 +6,13 @@ public class Contacto {
     private int id;
     private String nombre;
     private String apellido;
-    private int telefono;
+    private String telefono;
     private static int idContacto = 1;
 
     public Contacto() {
     }
 
-    public Contacto(String nombre, String apellido, int telefono) {
+    public Contacto(String nombre, String apellido, String telefono) {
         this.id = idContacto++;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -35,11 +35,11 @@ public class Contacto {
         this.apellido = apellido;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
