@@ -1,5 +1,7 @@
 package org.generation.hackathon.models;
 
+import java.util.Objects;
+
 public class Contacto {
     private String nombre;
     private String apellido;
