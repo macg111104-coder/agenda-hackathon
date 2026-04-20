@@ -69,8 +69,4 @@ public class Contacto {
     public String toString() {
         return "Contacto [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + "]";
     }
-    
-    
-
-
 }
