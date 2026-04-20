@@ -13,9 +13,9 @@ public class ContactoMain {
 
 
 
-//        System.out.println(contactos.getSuperContactos());
-//        System.out.println(contactoService.agendaLlena());
-//        System.out.println(contactoService.espaciosLibres());
+        System.out.println(contactos.getSuperContactos());
+        System.out.println(contactoService.agendaLlena());
+        System.out.println(contactoService.espaciosLibres());
 
 
     }
