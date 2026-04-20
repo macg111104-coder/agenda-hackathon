@@ -2,6 +2,7 @@ package org.generation.hackathon.main;
 
 import java.util.Scanner;
 
+import org.generation.hackathon.models.Contacto;
 import org.generation.hackathon.services.ContactoService;
 
 public class ContactoMain {
@@ -22,10 +23,10 @@ public class ContactoMain {
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el nombre del contacto a eliminar: ");
-                    String nombreEliminar = sc.nextLine();
+                    String nombre = sc.nextLine();
                     System.out.print("Ingrese el apellido del contacto a eliminar: ");
-                    String apellidoEliminar = sc.nextLine();
-                    service.eliminarContacto(new org.generation.hackathon.models.Contacto(nombreEliminar, apellidoEliminar, 0));
+                    String apellido = sc.nextLine();
+                    service.eliminarContacto(new Contacto(nombre, apellido, 0));
                     break;
                 case 2:
                     System.out.print("Ingrese el nombre del contacto a modificar: ");

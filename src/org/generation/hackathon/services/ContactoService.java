@@ -7,15 +7,15 @@ import org.generation.hackathon.models.Contacto;
 public class ContactoService {
 
     private List<Contacto> contactos;
-    private int capaidadmax;
+    private int cantidadMax;
 
     public ContactoService() {
-        this.capaidadmax = 10;
+        this.cantidadMax = 10;
         this.contactos = new ArrayList<>();
     }
 
-    public ContactoService(int capaidadmax) {
-        this.capaidadmax = capaidadmax;
+    public ContactoService(int cantidadMax) {
+        this.cantidadMax = cantidadMax;
         this.contactos = new ArrayList<>();
     }
 
@@ -28,13 +28,13 @@ public class ContactoService {
         }
     }
 
-    //Modificar un contacto por nombre y apellido
+    //Modificar un telefono por nombre y apellido
     public void modificarContacto(String nombre, String apellido, int nuevo){
         for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) && 
                 c.getApellido().equalsIgnoreCase(apellido)) {
                 c.setTelefono(nuevo);
-                System.out.println("Contacto modificado: " + 
+                System.out.println("Telefono modificado: " + 
                 c.getNombre() + " " + 
                 c.getApellido() + " " + 
                 c.getTelefono());
