@@ -3,17 +3,28 @@ package org.generation.hackathon.models;
 import java.util.Objects;
 
 public class Contacto {
+    private int id;
     private String nombre;
     private String apellido;
-    private String telefono;
+    private long telefono;
+    private static int idContacto = 1;
 
     public Contacto() {
     }
 
-    public Contacto(String nombre, String apellido, String telefono) {
+    public Contacto(String nombre, String apellido, long telefono) {
+        this.id = idContacto++;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -32,20 +43,24 @@ public class Contacto {
         this.apellido = apellido;
     }
 
-    public String getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public static int getIdContacto() {
+        return idContacto;
+    }
+
+    public static void setIdContacto(int idContacto) {
+        Contacto.idContacto = idContacto;
     }
 
     @Override
     public String toString() {
-        return "Contacto [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + "]";
+        return "Contacto [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + "]";
     }
-    
-    
-
-
 }
