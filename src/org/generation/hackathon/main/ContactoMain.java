@@ -36,7 +36,7 @@ public class ContactoMain {
                     break;
 
                 case "4":
-                    System.out.println("Lista de contactos:");
+                    servicio.imprimirContactos();
                     break;
 
                 case "5":
