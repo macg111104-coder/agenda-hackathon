@@ -56,4 +56,15 @@ public class ContactoService {
             return "Ya no hay espacio caaarrrrrrrrrrrrrrrnal :v";
         }
     }
+
+    public void buscarContacto(String nombre, String apellido) {
+        for (Contacto c : agenda.values()) {
+            if (c.getNombre().equalsIgnoreCase(nombre) &&
+                    c.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Teléfono: " + c.getTelefono());
+                return;
+            }
+        }
+        System.out.println("Contacto no encontrado.");
+    }
 }
