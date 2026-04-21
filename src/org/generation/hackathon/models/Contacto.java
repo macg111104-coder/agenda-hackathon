@@ -19,6 +19,10 @@ public class Contacto {
         this.telefono = telefono;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getNombre() {
         return nombre;
     }

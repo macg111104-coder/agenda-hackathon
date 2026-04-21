@@ -28,10 +28,13 @@ public class ContactoService {
             System.out.println("La lista esta llena ya no puede ingresar mas datos");
             return;
         }
-        if (contactos.contains(contacto)) {
+
+        if (existeContacto(contacto)) {
             System.out.println("ADVERTENCIA: El contacto '" + contacto.getNombre() + " " + contacto.getApellido()
                     + "' ya existe en la agenda.");
+            return; // Evita añadir duplicados
         }
+
         contactos.add(contacto);
         System.out.println("Contacto añadido: " + contacto.getNombre() + " " + contacto.getApellido());
     }
@@ -39,21 +42,17 @@ public class ContactoService {
     // Listar contactos
     public List<Contacto> listarContactos() {
         if (contactos == null || contactos.isEmpty()) {
-            return new ArrayList<>(); // Retorna una lista vacía si no hay contactos
+            return new ArrayList<>();
         }
 
-        // Creando una copia para no alterar la lista original si no se especifica
         List<Contacto> listaOrdenada = new ArrayList<>(contactos);
-
-        // Ordenando alfabéticamente por Nombre y luego por Apellido.
         listaOrdenada.sort(Comparator.comparing(Contacto::getNombre, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Contacto::getApellido, String.CASE_INSENSITIVE_ORDER));
 
         return listaOrdenada;
     }
 
-    // Opcional: Método para imprimir (si aún necesitas la funcionalidad de
-    // impresión)
+    // Imprimir contactos
     public void imprimirContactos() {
         List<Contacto> contactosOrdenados = listarContactos();
         if (contactosOrdenados.isEmpty()) {
@@ -63,11 +62,11 @@ public class ContactoService {
 
         System.out.println("\n--- CONTACTOS ---");
         for (Contacto c : contactosOrdenados) {
-            System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
+            System.out.println(c.getId() + ". " + c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
         }
     }
 
-    // Existe comtacto
+    // Existe contacto (ahora siendo usado)
     private boolean existeContacto(Contacto contacto) {
         return contactos.contains(contacto);
     }
@@ -89,8 +88,6 @@ public class ContactoService {
                     c.getApellido().equalsIgnoreCase(apellido)) {
                 c.setTelefono(nuevo);
                 System.out.println("Telefono modificado: " +
-                        c.getNombre() + " " +
-                        c.getApellido() + " " +
                         c.getTelefono());
                 return;
             }
@@ -108,4 +105,15 @@ public class ContactoService {
         return cantidadMax - contactos.size();
     }
 
+    // Buscar contacto por nombre y apellido
+    public void buscarContacto(String nombre, String apellido) {
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombre) &&
+                    c.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Teléfono: " + c.getTelefono());
+                return;
+            }
+        }
+        System.out.println("Contacto no encontrado.");
+    }
 }
