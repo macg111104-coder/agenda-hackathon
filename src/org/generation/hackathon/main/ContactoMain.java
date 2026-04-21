@@ -47,11 +47,15 @@ public class ContactoMain {
                     break;
 
                 case "6":
-                    servicio.agendaLlena();
+                    if (servicio.agendaLlena()){
+                        System.out.println("Agenda llena pa");
+                    }else {
+                        System.out.println("Hay cupo, ¿cuantos?, checa la opción 7 pa");
+                    }
                     break;
 
                 case "7":
-                    servicio.espaciosLibres();
+                    System.out.println(servicio.espaciosLibres());
                     break;
 
                 case "8":
