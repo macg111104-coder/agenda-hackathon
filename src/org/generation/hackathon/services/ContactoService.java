@@ -1,67 +1,113 @@
 package org.generation.hackathon.services;
 
+import java.util.*;
+
 import org.generation.hackathon.models.Contacto;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 public class ContactoService {
-    private Map<Integer, Contacto> agenda = new HashMap<>();
-    private Scanner sc = new Scanner(System.in);
 
-    public void añadirContacto(Contacto contacto){
-        if (agendaLlena()){
-            System.out.println("La lista esta llena ya no puede ingresar mas datos");
-            System.exit(1);
-        }else
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
+    private List<Contacto> contactos = new ArrayList<>();
+    private int cantidadMax;
 
-        System.out.print("Apellido: ");
-        String apellido = sc.nextLine();
+    public ContactoService() {
+        this.cantidadMax = 10;
+    }
 
-        if (existeContacto(nombre, apellido)) {
-            System.out.println("ADVERTENCIA: El contacto '" + nombre + " " + apellido + "' ya existe en la agenda.");
+    public ContactoService(int cantidadMax) {
+        this.cantidadMax = cantidadMax;
+    }
+
+    // Añadir contacto
+    public void anadirContacto(Contacto contacto) {
+        if (contacto.getNombre().isBlank() || contacto.getApellido().isBlank()) {
+            System.out.println("Error: No se pueden ingresar campos vacíos.");
             return;
         }
 
-        System.out.print("Teléfono: ");
-        String tel = sc.nextLine();
+        if (agendaLlena()) {
+            System.out.println("La lista esta llena ya no puede ingresar mas datos");
+            return;
+        }
 
-        Contacto nuevo = new Contacto(nombre, apellido, tel);
+        if (existeContacto(contacto)) {
+            System.out.println("ADVERTENCIA: El contacto '" + contacto.getNombre() + " " + contacto.getApellido()
+                    + "' ya existe en la agenda.");
+            return; // Evita añadir duplicados
+        }
 
-        agenda.put(nuevo.getId(), nuevo);
+        contactos.add(contacto);
+        System.out.println("Contacto añadido: " + contacto.getNombre() + " " + contacto.getApellido());
     }
-    private boolean existeContacto(String nombre, String apellido) {
-        for (Contacto c : agenda.values()) {
-            // Comparamos ignorando mayúsculas/minúsculas
+
+    // Listar contactos
+    public List<Contacto> listarContactos() {
+        if (contactos == null || contactos.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<Contacto> listaOrdenada = new ArrayList<>(contactos);
+        listaOrdenada.sort(Comparator.comparing(Contacto::getNombre, String.CASE_INSENSITIVE_ORDER)
+                .thenComparing(Contacto::getApellido, String.CASE_INSENSITIVE_ORDER));
+
+        return listaOrdenada;
+    }
+
+    // Imprimir contactos
+    public void imprimirContactos() {
+        List<Contacto> contactosOrdenados = listarContactos();
+        if (contactosOrdenados.isEmpty()) {
+            System.out.println("La agenda está vacía...");
+            return;
+        }
+
+        System.out.println("\n--- CONTACTOS ---");
+        for (Contacto c : contactosOrdenados) {
+            System.out.println(c.getId() + ". " + c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
+        }
+    }
+
+    // Existe contacto (ahora siendo usado)
+    private boolean existeContacto(Contacto contacto) {
+        return contactos.contains(contacto);
+    }
+
+    // Eliminar un contacto por nombre y apellido
+    public void eliminarContacto(String nombre, String apellido) {
+        Contacto contacto = new Contacto(nombre, apellido, "");
+        if (contactos.remove(contacto)) {
+            System.out.println("Contacto eliminado: " + contacto.getNombre() + " " + contacto.getApellido());
+        } else {
+            System.out.println("Contacto no encontrado: " + contacto.getNombre() + " " + contacto.getApellido());
+        }
+    }
+
+    // Modificar un telefono por nombre y apellido
+    public void modificarTelefono(String nombre, String apellido, String nuevo) {
+        for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
-                return true;
+                c.setTelefono(nuevo);
+                System.out.println("Telefono modificado: " +
+                        c.getTelefono());
+                return;
             }
         }
-        return false;
+        System.out.println("Contacto no encontrado: " + nombre + " " + apellido);
     }
 
-    public boolean agendaLlena(){
-        return agenda.size() > 10;
+    // Agenda llena
+    public boolean agendaLlena() {
+        return contactos.size() >= cantidadMax;
     }
 
-    public String espaciosLibres(){
-
-        if(agenda.size() <= 10){
-            return "Espacios disponibles: "+ (10 - agenda.size())+" espacios";
-        }else {
-            return "Ya no hay espacio caaarrrrrrrrrrrrrrrnal :v";
-        }
+    // Espacios libres
+    public int espaciosLibres() {
+        return cantidadMax - contactos.size();
     }
 
+    // Buscar contacto por nombre y apellido
     public void buscarContacto(String nombre, String apellido) {
-        for (Contacto c : agenda.values()) {
+        for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
                 System.out.println("Teléfono: " + c.getTelefono());
@@ -69,23 +115,5 @@ public class ContactoService {
             }
         }
         System.out.println("Contacto no encontrado.");
-    }
-
-    // LISTAR CONTACTOS
-    public void listarContactos(List<Contacto> agenda) {
-        if (agenda == null || agenda.isEmpty()) {
-            System.out.println("La agenda está vacia... ");
-            return;
-        }
-        // Creando una copia para no alterar la lista original si no se especifica
-        List<Contacto> listaOrdenada = new ArrayList<>(agenda);
-        // Ordenando alfabéticamente por Nombre y luego por Apellido.
-        listaOrdenada.sort(Comparator.comparing(Contacto::getNombre, String.CASE_INSENSITIVE_ORDER)
-                .thenComparing(Contacto::getApellido, String.CASE_INSENSITIVE_ORDER));
-        // Mostrando los contactos con el formato de nombre + apellido + telefono
-        System.out.println("\n--- CONTACTOS ---");
-        for (Contacto c : listaOrdenada) {
-            System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
-        }
     }
 }

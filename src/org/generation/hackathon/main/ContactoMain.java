@@ -17,48 +17,60 @@ public class ContactoMain {
 
             switch (opc) {
                 case "1":
-                    System.out.print("Nombre: "); String n1 = sn.nextLine();
-                    System.out.print("Apellido: "); String a1 = sn.nextLine();
-                    System.out.print("Teléfono: "); String t1 = sn.nextLine();
-                    servicio.añadirContacto(new Contacto(n1, a1, t1));
+                    System.out.print("Nombre: ");
+                    String nombre = sn.nextLine();
+                    System.out.print("Apellido: ");
+                    String apellido = sn.nextLine();
+                    System.out.print("Teléfono: ");
+                    String telefono = sn.nextLine();
+                    servicio.anadirContacto(new Contacto(nombre, apellido, telefono));
                     break;
 
                 case "2":
-                    System.out.print("Nombre a buscar: "); String n2 = sn.nextLine();
-                    System.out.print("Apellido a buscar: "); String a2 = sn.nextLine();
-                    servicio.buscarContacto(n2, a2);
+                    // Opción de buscar
+                    System.out.print("Nombre del contacto: ");
+                    nombre = sn.nextLine();
+                    System.out.print("Apellido del contacto: ");
+                    apellido = sn.nextLine();
+                    servicio.buscarContacto(nombre, apellido);
                     break;
 
                 case "3":
-                    System.out.print("Nombre a eliminar: "); String n3 = sn.nextLine();
-                    System.out.print("Apellido a eliminar: "); String a3 = sn.nextLine();
-                    servicio.eliminarContacto(new Contacto(n3, a3));
+                    System.out.println("nombre del contacto: ");
+                    nombre = sn.nextLine();
+                    System.out.println("apellido del contacto: ");
+                    apellido = sn.nextLine();
+                    servicio.eliminarContacto(nombre, apellido);
                     break;
 
                 case "4":
-                    servicio.listarContactos();
+                    servicio.imprimirContactos();
                     break;
 
                 case "5":
-                    System.out.print("Nombre del contacto: "); String n5 = sn.nextLine();
-                    System.out.print("Apellido del contacto: "); String a5 = sn.nextLine();
-                    System.out.print("Nuevo Teléfono: "); String nt = sn.nextLine();
-                    servicio.modificarTelefono(n5, a5, nt);
+                    System.out.print("Nombre del contacto: ");
+                    nombre = sn.nextLine();
+                    System.out.print("Apellido del contacto: ");
+                    apellido = sn.nextLine();
+                    System.out.print("Nuevo Teléfono: ");
+                    telefono = sn.nextLine();
+                    servicio.modificarTelefono(nombre, apellido, telefono);
                     break;
 
                 case "6":
-                    if (servicio.agendaLlena()){
-                        System.out.println("Agenda llena pa");
-                    }else {
-                        System.out.println("Hay cupo, ¿cuantos?, checa la opción 7 pa");
+                    // Mostrar si está llena o no
+                    if (servicio.agendaLlena()) {
+                        System.out.println("La agenda ESTÁ LLENA");
+                    } else {
+                        System.out.println("La agenda NO está llena");
                     }
                     break;
 
                 case "7":
-                    System.out.println(servicio.espaciosLibres());
+                    System.out.println("Espacios libres: " + servicio.espaciosLibres());
                     break;
-
                 case "8":
+                    System.out.println("Saliendo... ");
                     salir = true;
                     break;
 
